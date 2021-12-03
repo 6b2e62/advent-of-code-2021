@@ -12,8 +12,8 @@ print_list([H|T]) -> io:format("~p~n", [H]),
 		     print_list(T).
 
 binary_to_integer_list([Head|Tail], IntegerList) ->
-  Int = binary_to_integer(Head),
-  binary_to_integer_list(Tail, [Int|IntegerList]);
+  IntValue = binary_to_integer(Head),
+  binary_to_integer_list(Tail, [IntValue|IntegerList]);
 
 binary_to_integer_list([], IntegerList) ->
   reverse(IntegerList).
@@ -31,18 +31,16 @@ count_depths_1([_], Times) -> Times;
 count_depths_1([First, Second|Rest], Times) when [Second] > [First] ->
   count_depths_1([Second|Rest], Times + 1);
 
-count_depths_1([First, Second|Rest], Times) when [Second] =< [First] ->
+count_depths_1([_, Second|Rest], Times) ->
   count_depths_1([Second|Rest], Times).
 
 % Challange 2
-count_depths_2([_], Times) -> Times;
-count_depths_2([_, _], Times) -> Times;
 count_depths_2([_, _, _], Times) -> Times;
 
 count_depths_2([First, Second, Third, Fourth|Rest], Times) when [First + Second + Third] < [Second + Third + Fourth] ->
   count_depths_2([Second, Third, Fourth|Rest], Times + 1);
 
-count_depths_2([First, Second, Third, Fourth|Rest], Times) when [First + Second + Third] >= [Second + Third + Fourth] ->
+count_depths_2([_, Second, Third, Fourth|Rest], Times) ->
   count_depths_2([Second, Third, Fourth|Rest], Times).
 
 test() ->
@@ -64,7 +62,7 @@ test() ->
 
 main() ->
   Integers = read_challange_input(),
-  Times1 = count_depths_1(Integers, 0),
-  Times2 = count_depths_2(Integers, 0),
-  io:format("Result 1: ~p~n", [Times1]),
-  io:format("Result 2: ~p~n", [Times2]).
+  IncreaseCount1 = count_depths_1(Integers, 0),
+  IncreaseCount2 = count_depths_2(Integers, 0),
+  io:format("Result 1: ~p~n", [IncreaseCount1]),
+  io:format("Result 2: ~p~n", [IncreaseCount2]).
