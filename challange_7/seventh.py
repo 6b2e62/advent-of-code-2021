@@ -12,10 +12,10 @@ def fuel_1(values, med):
     fuel_sum += abs(val - med)
   return fuel_sum
 
-def fuel_2(values, med):
+def fuel_2(values, avg):
   fuel_sum = 0
   for val in values:
-    fuel_sum += triangle_number(abs(val - med))
+    fuel_sum += triangle_number(abs(val - avg))
   return fuel_sum
 
 def triangle_number(n):
@@ -28,7 +28,7 @@ input_data = read_file()
 
 med = int(statistics.median(input_data))
 avg = int(sum(input_data) / len(input_data))
-
+print(med, avg)
 lowest_fuel_1 = min([fuel_1(input_data, med), fuel_1(input_data, med - 1), fuel_1(input_data, med + 1)])
 lowest_fuel_2 = min([fuel_2(input_data, avg), fuel_2(input_data, avg - 1), fuel_2(input_data, avg + 1)])
 
