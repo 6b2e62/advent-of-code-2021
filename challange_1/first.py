@@ -5,7 +5,6 @@ def test():
   
 def read_depths():
   depths = open('input', 'r').read().split('\n')
-  # :-1 to get rid of empty string in the end
   return list(map(int, depths[:-1]))
 
 def ver1():

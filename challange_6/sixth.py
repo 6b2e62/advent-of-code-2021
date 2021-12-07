@@ -45,7 +45,6 @@ def estimate_population_fast(initial_state, n):
                 estimates[6] += estimates_copy[0]
             else:
                 estimates[key - 1] = estimates_copy[key]
-
     print(sum(estimates.values()))
 
 initial_state = read_file()

@@ -14,8 +14,6 @@ def power_consumption(data, lines_count):
  
   bitstring_msb = ''.join(m)
   bitstring_lsb = ''.join('1' if x == '0' else '0' for x in m)
-  # print(bitstring_msb)
-  # print(bitstring_lsb)
   msb_int = int(bitstring_msb, 2)
   lsb_int = int(bitstring_lsb, 2)
   return msb_int * lsb_int

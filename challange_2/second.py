@@ -1,6 +1,5 @@
 def read_file():
   data = open('input', 'r').read().split('\n')
-  # :-1 to get rid of empty string in the end
   data = [d.split() for d in data[:-1]]
   return data
 

@@ -9,7 +9,7 @@
 % Helpers
 print_list([]) -> ok;
 print_list([H|T]) -> io:format("~p~n", [H]),
-		     print_list(T).
+  print_list(T).
 
 binary_to_integer_list([Head|Tail], IntegerList) ->
   IntValue = binary_to_integer(Head),
@@ -21,8 +21,6 @@ binary_to_integer_list([], IntegerList) ->
 read_challange_input() ->
   {ok, Data} = file:read_file("input"),
   BinaryLines = droplast(binary:split(Data, [<<"\n">>], [global])),  
-  % additional new line, thus droplast
-  % io:format("~p~n", [last(BinaryLines)]),
   binary_to_integer_list(BinaryLines, []).
 
 % Challange 1

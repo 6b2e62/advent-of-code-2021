@@ -8,7 +8,7 @@ read_challange_input() ->
 
 load_estimates([], Estimates) -> Estimates;
 load_estimates([InputValue|Rest], Estimates) ->
-	Val = maps:get(InputValue, Estimates),
+  Val = maps:get(InputValue, Estimates),
   NewEstimates = maps:update(InputValue, Val + 1, Estimates),
 	load_estimates(Rest, NewEstimates).
 
@@ -31,17 +31,15 @@ new_estimate_by_key([Key|Rest], Day, Estimates, EstimatesCopy) ->
 run_estimator([], Estimates, _) -> Estimates;
 run_estimator([Day|Rest], Estimates, Keys) ->
 	NewEstimates = new_estimate_by_key(Keys, Day, Estimates, Estimates),
-	% io:format("~p~n", [maps:values(NewEstimates)]),
 	run_estimator(Rest, NewEstimates, Keys).
 
 main() ->
-  Input = read_challange_input(),
-  EmptyEstimates = #{ 8 => 0, 7 => 0, 6 => 0, 5 => 0, 4 => 0, 3 => 0, 2 => 0, 1 => 0, 0 => 0},
-  Keys = lists:reverse(maps:keys(EmptyEstimates)),
   Days = 256,
   DaysList = lists:seq(1, Days, 1),	
+  Input = read_challange_input(),
+  EmptyEstimates = #{ 8 => 0, 7 => 0, 6 => 0, 5 => 0, 4 => 0, 3 => 0, 2 => 0, 1 => 0, 0 => 0},
 	Estimates = load_estimates(Input, EmptyEstimates),
-	% io:format("~p~n", [maps:values(Estimates)]),
+  Keys = lists:reverse(maps:keys(EmptyEstimates)),
 	NewEstimates = run_estimator(DaysList, Estimates, Keys),	
-	Values = maps:values(NewEstimates),
-	io:format("Res: ~p~n", [lists:sum(Values)]).
+	Sum = maps:values(NewEstimates),
+	io:format("Population: ~p~n", [lists:sum(Sum)]).
