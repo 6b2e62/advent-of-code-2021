@@ -2,6 +2,6 @@
 https://adventofcode.com/2021
 
 ## Lessons learned
-- python passes lists by reference
-- double check datatypes when comparing numbers - e.g. "988" > "1000" is true
+- python passes lists by reference, use `copy.copy()` for shallow copy (or `[:]`) or `copy.deepcopy` for deep copy
+- double check datatypes when comparing numbers - e.g. `"988" > "1000"` returns true
 - drawing solution helps
