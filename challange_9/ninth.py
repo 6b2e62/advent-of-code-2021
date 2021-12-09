@@ -36,6 +36,7 @@ for i in range(0, row_len):
     if is_lowest_point(matrix, i, j, row_len - 1, col_len - 1):
       risk_level += 1 + int(matrix[i][j])
 
+# Part 1
 print(risk_level)
 
 visited = set()
@@ -79,6 +80,7 @@ for i in range(0, row_len):
       all_bassins_sums.append(bassin_sum)
       
     current_bassin = []
-      
-sorted_basin_sums = sorted(all_bassins_sums)
-print(sorted_basin_sums[-1] * sorted_basin_sums[-2] * sorted_basin_sums[-3])
+     
+# Part 2
+sorted_bassin_sums = sorted(all_bassins_sums)
+print(sorted_bassin_sums[-1] * sorted_bassin_sums[-2] * sorted_bassin_sums[-3])
