@@ -3,22 +3,26 @@ from collections import defaultdict
 def read_file():
   data = open('input', 'r').read().split('\n')
   data = list(map(str.strip, data))
-
   data_formatted = []
+
   for line in data:
     if not line:
       continue
-    [signals, sum_of_signals] = line.split(' | ')
-    data_formatted.append((signals, sum_of_signals))
+
+    signals = line.split(' | ')
+    data_formatted.append(signals)
+
   return data_formatted
 
 def count_easy_digits(data):
   easy_digits_count = 0
-  for (signals, sum_of_signals) in data:
-    sum_of_signals_digits = sum_of_signals.split(' ')
-    for sum_of_signals_digit in sum_of_signals_digits:
-      if digits_map[len(sum_of_signals_digit)] != 0:
-        easy_digits_count += 1  
+  for (_, output_signal) in data:
+    output_signal = output_signal.split(' ')
+
+    for signal in output_signal:
+      if digits_map[len(signal)] != 0:
+        easy_digits_count += 1
+
   return easy_digits_count
 
 def zero():
@@ -37,10 +41,11 @@ def are_letters_in_str(letters, string):
   for letter in letters:
     if not letter in string:
       return False
+
   return True
 
 # Execution time oriented solution
-def signal_decoder(easy_digits_map, signal_digits):
+def signal_decoder(digits_map, signal):
   #    0:      1:      2:      3:      4:
   #  aaaa    ....    aaaa    aaaa    ....
   # b    c  .    c  .    c  .    c  b    c
@@ -72,42 +77,42 @@ def signal_decoder(easy_digits_map, signal_digits):
   # Find "4" is unique length
   # Find "7" is unique length
   ## Then
-  # Take "1"; "6" misses one letter => "6"
-  # Take "1"; "7" define TOP letter => "7"
-  # Take "4"; ("0" and "9" are left), "0" misses one letter => "0"
-  # Other length 6 is "9" => "9"
-  # Take "1", "3" contains both letters => "3"
-  # Take "6", one letter difference with "5" => "5"
+  # Take "1"; "6" misses one letter => deduced "6", remove 6 from array
+  # Take "1"; "7" has TOP letter => deduced "7"
+  # Take "4"; ("0" and "9" are left), "0" misses one letter => deduced "0", remove 0 from array
+  # Length 6 array "9" is left => deduced "9"
+  # Take "1", "3" contains both letters => deduced "3"
+  # Take "6", one letter difference from "5" => deduced "5"
   # The last one is "2"
-  hard_digits_5_len = signal_digits[0:3]
-  hard_digits_6_len = signal_digits[3:6]
-  digit_1 = easy_digits_map[1]
-  digit_4 = easy_digits_map[4]
-  digit_7 = easy_digits_map[7]
-  digit_8 = easy_digits_map[8]
+  hard_digits_5 = signal[0:3]
+  hard_digits_6 = signal[3:6]
+  digit_1 = digits_map[1]
+  digit_4 = digits_map[4]
+  digit_7 = digits_map[7]
+  digit_8 = digits_map[8]
   digit_6 = digit_0 = digit_9 = digit_5 = digit_2 = digit_3 = None
 
-  for digit in hard_digits_6_len:
-    if (are_letters_in_str(list(digit_1), digit) == True):
+  for digit in hard_digits_6:
+    if are_letters_in_str(list(digit_1), digit) == True:
       continue
     digit_6 = digit
-  hard_digits_6_len.remove(digit_6)
+  hard_digits_6.remove(digit_6)
       
   top = list(set(digit_1) & set(digit_7))[0]
  
-  for digit in hard_digits_6_len:
+  for digit in hard_digits_6:
     diff = list(set(digit_4) - set(digit))
     if len(diff) == 1:
       digit_0 = digit
     else:
       digit_9 = digit
 
-  for digit in hard_digits_5_len:
-    if (are_letters_in_str(list(digit_1), digit) == True):
+  for digit in hard_digits_5:
+    if are_letters_in_str(list(digit_1), digit) == True:
       digit_3 = digit
-  hard_digits_5_len.remove(digit_3)
+  hard_digits_5.remove(digit_3)
 
-  for digit in hard_digits_5_len:
+  for digit in hard_digits_5:
     diff = list(set(digit_6) - set(digit))
     if len(diff) == 1:
       digit_5 = digit
@@ -126,24 +131,25 @@ def sort_chars(chars):
   sorted_chars.sort(key = ord)
   return ''.join(sorted_chars)
 
-def sum_of_signals(data):
+def signal_sum(data):
   ouput_values = []
-  for (signals, sum_of_signals) in data:
-    sum_of_signals_digits = list(filter(len, sum_of_signals.split(' ')))
-    signal_digits = list(filter(len, signals.split(' '))) 
-    signal_digits.sort(key = len)
+  for (input_signal, output_signal) in data:
+    output_signal = list(filter(len, output_signal.split(' ')))
+    input_signal = list(filter(len, input_signal.split(' '))) 
+    input_signal.sort(key = len)
     
-    digit_1 = signal_digits[0]
-    digit_7 = signal_digits[1]
-    digit_4 = signal_digits[2]
-    digit_8 = signal_digits[9]
+    digit_1 = input_signal[0]
+    digit_7 = input_signal[1]
+    digit_4 = input_signal[2]
+    digit_8 = input_signal[9]
 
     easy_digits_map = { 1: digit_1, 4: digit_4, 7: digit_7, 8: digit_8 }
-    hard_digits = signal_digits[3:-1]
+    hard_digits = input_signal[3:-1]
 
     signal_to_digit_map = signal_decoder(easy_digits_map, hard_digits)
+
     number = []
-    for signal in sum_of_signals_digits:
+    for signal in output_signal:
       signal_sorted = sort_chars(signal)
       digit = signal_to_digit_map[signal_sorted]
       number.append(str(digit))
@@ -151,23 +157,22 @@ def sum_of_signals(data):
   return sum(map(int, ouput_values))
 
 # Short solutions
-def q1(data):
-  counter = 0
-  for line in data:
-    _, right = line
-    signals = right.split(' ')
-    for i in signals: 
-      if len(i) in [2, 3, 4, 7]:
-        counter += 1
-  return counter
+def q1(line):
+  s = 0
+  _, right = line
+  signals = right.split(' ')
+  for signal in signals: 
+    if len(signal) in [2, 3, 4, 7]:
+      s += 1
+  return s
 
 from itertools import permutations
-iterate = ['abcefg', 'cf', 'acdeg', 'acdfg', 'bcdf', 'abdfg', 'abdefg', 'acf', 'abcdefg', 'abcdfg']
 # 0, 1, ..., 9
+iterate = ['abcefg', 'cf', 'acdeg', 'acdfg', 'bcdf', 'abdfg', 'abdefg', 'acf', 'abcdefg', 'abcdfg']
 
+all_letters = 'abcdefg'
 def q2(line):
   left, right = line
-  all_letters = 'abcdefg'
   iterate_set = set(iterate)
   for p in permutations(all_letters):
     letter_p = { i: j for i, j in zip(p, all_letters) }
@@ -178,12 +183,11 @@ def q2(line):
       
 
 data = read_file()
-print(count_easy_digits(data))
-print(q1(data))
-print(sum_of_signals(data))
+print(count_easy_digits(data), signal_sum(data))
 
-s = 0
+s1 = s2 = 0
 for line in data:
-  s += q2(line)
+  s1 += q1(line)
+  s2 += q2(line)
 
-print(s)
+print(s1, s2)
