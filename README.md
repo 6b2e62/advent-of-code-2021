@@ -13,4 +13,4 @@ Solutions in Python and Erlang
 - apart from comprehensions, python also supports generator expression, e.g. `tuple(i for i in (1, 2, 3))`
 - python has meta-like programming similar to ruby, e.g. `locals()`, `globals()`, or `getattr()`
 - python has nice built-in set operations
-- Erlang's [97] will be converted to ["a"], and hd("a") to 97, watch out when taking elements from list
+- Erlang's `[97]` will be converted to `["a"]`, and `hd("a")` to `97`, watch out when taking elements from list
