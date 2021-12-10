@@ -9,5 +9,5 @@ Solutions in Python and Erlang
 - drawing solution helps
 - with big data set, recursion is evil, undebuggable
 - explore and experiment with itertools more, they reduce the complexity of the code
-- apart from list comprehension, python has dictionary comprehension as well, `{ i: j for ... }`
+- apart from list comprehension, python has dictionary comprehension as well, `{ i: j for ... }` and set `{ }`
 - apart from comprehensions, python also supports generator expression, e.g. `tuple(i for i in (1, 2, 3))`
