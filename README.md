@@ -11,3 +11,6 @@ Solutions in Python and Erlang
 - explore and experiment with itertools more, they reduce the complexity of the code
 - apart from list comprehension, python has dictionary comprehension as well, `{ i: j for ... }` and set `{ }`
 - apart from comprehensions, python also supports generator expression, e.g. `tuple(i for i in (1, 2, 3))`
+- python has meta-like programming similar to ruby, e.g. `locals()`, `globals()`, or `getattr()`
+- python has nice built-in set operations
+- Erlang's [97] will be converted to ["a"], and hd("a") to 97, watch out when taking elements from list
