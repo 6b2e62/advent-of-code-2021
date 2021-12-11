@@ -19,7 +19,7 @@ n_length_chunks(List,Len) ->
     {Head, Tail} = lists:split(Len, List),
     [Head | n_length_chunks(Tail, Len)].
 
-% Task 1
+% Data parsing
 read_challange_input() ->
   {ok, Data} = file:read_file("input"),
   DataByLine = binary:split(Data, [<<"\n">>], [global]),
@@ -47,6 +47,7 @@ read_challange_input() ->
 
   [IntegerInput, Boards2d, EmptyBoards2d].
 
+% Tests
 is_winner_in_rows([]) -> false;
 is_winner_in_rows([Row | Rest]) ->
   ListSum = lists:sum(Row),
@@ -235,7 +236,7 @@ play([ToFind | Next], Boards, ScoreBoards, Counter, Winners) ->
        play(Next, Boards, NewScoreBoards, Counter + 1, NewWinners)
   end.
 
+% Part 1 & Part 2
 main() ->
   [Input, Boards, ScoreBoards] = read_challange_input(),
-
   play(Input, Boards, ScoreBoards, 0, []).
