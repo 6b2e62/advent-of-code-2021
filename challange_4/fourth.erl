@@ -189,20 +189,20 @@ update_score_board([Score | Rest], ScoreBoards) ->
   NewScoreBoards = update_list_at(BoardIndex, NewScoreBoard, ScoreBoards),
   update_score_board(Rest, NewScoreBoards).
 
-multiply_and_sum([], [], Sum) -> Sum;
-multiply_and_sum([Int | R1], [IntBin | R2], Sum) ->
+sum_if([], [], Sum) -> Sum;
+sum_if([Int | R1], [IntBin | R2], Sum) ->
   if
     IntBin == 0 ->
       NewSum = Sum + Int;
     true ->
       NewSum = Sum
   end,
-  multiply_and_sum(R1, R2, NewSum).
+  sum_if(R1, R2, NewSum).
 
 calculate_score(ScoreBoard, Board, WinningNumber) ->
   FlatScoreBoard = lists:flatten(ScoreBoard),
   FlatBoard = lists:flatten(Board),  
-  Res = WinningNumber * multiply_and_sum(FlatBoard, FlatScoreBoard, 0),
+  Res = WinningNumber * sum_if(FlatBoard, FlatScoreBoard, 0),
   Res.
 
 play([], _, _, _, _) -> ok;
