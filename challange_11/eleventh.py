@@ -14,19 +14,20 @@ data = read_file()
 
 def incr_adjacent(data, x, y):
   new_to_flash = False
-  for i in range(-1, 2):
-    for j in range(-1, 2):
-      if (i + x) > BOARD_SIZE - 1 or (j + y) > BOARD_SIZE - 1:
+  for i in range(x - 1, x + 2):
+    for j in range(y - 1, y + 2):
+      if i > BOARD_SIZE - 1 or j > BOARD_SIZE - 1:
         continue
-      if (i + x) < 0 or (j + y) < 0:
+      if i < 0 or j < 0:
         continue
-      if (x + i, y + j) == (x, y):
+      if (i, j) == (x, y):
         continue
 
-      if data[x + i][y + j] < 10:
-        data[x + i][y + j] += 1
-      if data[x + i][y + j] == 10:
+      if data[i][j] < 10:
+        data[i][j] += 1
+      if data[i][j] == 10:
         new_to_flash = True
+
   data[x][y] += 1
   return new_to_flash
 
@@ -60,10 +61,11 @@ for step in range(0, 1000):
       if data[i][j] >= 10:
         data[i][j] = 0
 
-  # Print out
+  # Count zeros on board
   flatten = list(itertools.chain(*data))
   zero_count = flatten.count(0)
   if zero_count == BOARD_SIZE * BOARD_SIZE and all_flashed_at == None:
+    # When board is 0s only
     all_flashed_at = step + 1
 
   flashes += zero_count
