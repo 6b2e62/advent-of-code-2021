@@ -20,4 +20,6 @@ for i in ...
   for j in ...
     for x, y in [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]:
 ```
-
+- Erlang: has ETS (bult-in term storage), that can be used like a global variable (store)
+- Erlang: Digraphs are based on ETS, thus there's no need to return updated object after modification
+- Erlang: when program performance is dead slow analyze lists usage, copying big lists, appending list via ets:insert is extremely slow
