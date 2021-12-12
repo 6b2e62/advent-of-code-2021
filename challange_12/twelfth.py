@@ -5,7 +5,7 @@
 from collections import defaultdict
 
 def read_file():
-  data = open('test_input', 'r').read().split('\n')
+  data = open('input', 'r').read().split('\n')
   data = list(filter(len, data))
   return data
 
@@ -59,10 +59,7 @@ def can_visit(key, visited, tolerance=2):
   # is this cave visited already?
   if visited[key] < tolerance:
     # is any cave visited twice?
-    if any(v > 1 for v in visited.values()):
-      return False
-    # if is not, we can visit small cave again
-    return True
+    return not any(v > 1 for v in visited.values())
   return False
 
 # Bruteforce
