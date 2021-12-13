@@ -17,6 +17,7 @@ https://adventofcode.com/2021
 | 10  | [day10.erl](challange_10/tenth.erl)   | [day10.py](challange_10/tenth.py)      |
 | 11  | ---                                   | [day11.py](challange_11/eleventh.py)   |
 | 12  | [day12.erl](challange_12/twelfth.erl) | [day12.py](challange_12/twelfth.py)    |
+| 12  |                                       | [day13.py](challange_13/thirteenth.py) |
 
 ## Lessons learned
 - Python: passes lists by reference, use `copy.copy()` for shallow copy (or `[:]`) or `copy.deepcopy` for deep copy
