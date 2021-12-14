@@ -1,4 +1,4 @@
--module(first).
+-module(day1).
 -export([test/0, main/0]).
 -export([print_list/1]).
 -export([count_depths_1/2]).

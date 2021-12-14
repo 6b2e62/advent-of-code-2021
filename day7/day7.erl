@@ -1,4 +1,4 @@
--module(seventh).
+-module(day7).
 -export([main/0]).
 
 read_challange_input() ->

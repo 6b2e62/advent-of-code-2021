@@ -1,4 +1,4 @@
--module(second).
+-module(day2).
 -export([main/0]).
 -export([calc_position/2]).
 -import(lists, [last/1, droplast/1]).

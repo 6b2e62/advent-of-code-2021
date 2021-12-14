@@ -1,4 +1,4 @@
--module(tenth).
+-module(day10).
 -export([main/0]).
 
 read_challange_input() ->

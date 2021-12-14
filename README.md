@@ -2,22 +2,53 @@
 https://adventofcode.com/2021
 
 ## Solutions in Python and Erlang
-
-| Day | Erlang                                | Python                                 |
-| --- | -----------------------------------   | -------------------------------------- |
-| 1   | [day1.erl](challange_1/first.erl)     | [day1.py](challange_1/first.py)        |
-| 2   | [day2.erl](challange_2/second.erl)    | [day2.py](challange_2/second.py)       |
-| 3   | [day3.erl](challange_3/third.erl)     | [day3.py](challange_3/third.py)        |
-| 4   | [day4.erl](challange_4/fourth.erl)    | [day4.py](challange_4/fourth.py)       |
-| 5   | ---                                   | [day5.py](challange_5/fifth.py)        |
-| 6   | [day6.erl](challange_6/sixth.erl)     | [day6.py](challange_6/sixth.py)        |
-| 7   | [day7.erl](challange_7/seventh.erl)   | [day7.py](challange_7/seventh.py)      |
-| 8   | ---                                   | [day8.py](challange_8/eigth.py)        |
-| 9   | ---                                   | [day9.py](challange_9/ninth.py)        |
-| 10  | [day10.erl](challange_10/tenth.erl)   | [day10.py](challange_10/tenth.py)      |
-| 11  | ---                                   | [day11.py](challange_11/eleventh.py)   |
-| 12  | [day12.erl](challange_12/twelfth.erl) | [day12.py](challange_12/twelfth.py)    |
-| 12  |                                       | [day13.py](challange_13/thirteenth.py) |
+By day:
+- day 1
+  - [day1.erl](day1/day1.erl)
+  - [day1.py](day1/day1.py)
+- day 2
+  - [day2.erl](day2/day2.erl)
+  - [day2.py](day2/day2.py)
+- day 3
+  - [day3.erl](day3/day3.erl)
+  - [day3.py](day3/day3.py)
+- day 4
+  - [day4.erl](day4/day4.erl) - trying to work on arrays in erlang doesn't end up well
+  - [day4_simplified.erl](day4/day4_simplified.erl) - simplified
+  - [day4.py](day4/day4.py)
+- day 5
+  - Erlang - TBD
+  - [day5.py](day5/day5.py)
+- day 6
+  - [day6.erl](day6/day6.erl)
+  - [day6.py](day6/day6.py)
+- day 7
+  - [day7.erl](day7/day7.erl)
+  - [day7.py](day7/day7.py)
+- day 8
+  - Erlang - TBD
+  - [day8.py](day8/day8.py)
+- day 9
+  - Erlang - TBD
+  - [day9.py](day9/day9.py)
+- day 10
+  - [day10.erl](day10/day10.erl)
+  - [day10.py](day10/day10.py)
+- day 11
+  - Erlang - TBD
+  - [day11.py](day11/day1.py)
+- day 12
+  - [day12.erl](day12/day12.erl)
+  - [day12.py](day12/day12.py)
+- day 13
+  - Erlang - TBD
+  - [day13.py](day13/day13.py) - heavy version, numpy array used
+  - [day13_simplified.pyl](day13/day13_simplified.py) - lightweigth, set based
+- day 14
+  - Erlang - TBD
+  - [day14_p1.py](day14/day14_p1.py) - part 1
+  - [day14_p2.py](day14/day14_p2.py) - part 2
+  - [day14_linkedlist.py](day14/day14_linkedlist.py) - attempt to use linked lists, it was a bad idea
 
 ## Lessons learned
 - Python: passes lists by reference, use `copy.copy()` for shallow copy (or `[:]`) or `copy.deepcopy` for deep copy
@@ -39,3 +70,4 @@ for i in ...
 - Erlang: has ETS (bult-in term storage), that can be used like a global variable (store)
 - Erlang: Digraphs are based on ETS, thus there's no need to return updated object after modification
 - Erlang: when program performance is dead slow analyze lists usage, copying big lists, appending list via ets:insert is extremely slow
+- General: When task hints to "count", there's probably a fast way to do it, avoid storing data if not necessary. Copying or storing big chunks of data is slow and will most probably result in OOM. 

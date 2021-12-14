@@ -1,4 +1,4 @@
--module(fourth).
+-module(day4).
 -export([main/0]).
 -export([test/0]).
 -import(lists, [last/1, droplast/1, nth/2]).
