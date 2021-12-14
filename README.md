@@ -36,7 +36,7 @@ By day:
   - [day10.py](day10/day10.py)
 - day 11
   - Erlang - TBD
-  - [day11.py](day11/day1.py)
+  - [day11.py](day11/day11.py)
 - day 12
   - [day12.erl](day12/day12.erl)
   - [day12.py](day12/day12.py)
