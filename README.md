@@ -50,14 +50,18 @@ By day:
   - [day14_p2.py](day14/day14_p2.py) - part 2
   - [day14_linkedlist.py](day14/day14_linkedlist.py) - attempt to use linked lists, it was a bad idea
 - day 15
-  - [day15_bruteforce.py](day15/day15_bruteforce.py)
-  - [day15_optimal.py](day15/day_optimal.py)
+  - Erlang - TBD
+  - [day15_bruteforce.py](day15/day15_bruteforce.py) - not optimal, memory eater, OOM generator
+  - [day15_optimal.py](day15/day15_optimal.py)
 - day 16
+  - Erlang - TBD
   - [day16_iterative.py](day16/day16_iterative.py) - only part 1, part 2 is hard, brackets have to match perfectly
   - [day16_recursive.py](day16/day16_recursive.py)
 - day 17
+  - Erlang - TBD
   - [day17.py](day17/day17.py)
 - day 18
+  - Erlang - TBD 
   - [day18.py](day18/day18.py)
 - day 19
 - day 20
@@ -65,7 +69,6 @@ By day:
 - day 22
 - day 23
 - day 24
-
 
 ## Lessons learned
 - Python: passes lists by reference, use `copy.copy()` for shallow copy (or `[:]`) or `copy.deepcopy` for deep copy
@@ -87,4 +90,4 @@ for i in ...
 - Erlang: has ETS (bult-in term storage), that can be used like a global variable (store)
 - Erlang: Digraphs are based on ETS, thus there's no need to return updated object after modification
 - Erlang: when program performance is dead slow analyze lists usage, copying big lists, appending list via ets:insert is extremely slow
-- General: When task hints to "count", there's probably a fast way to do it, avoid storing data if not necessary. Copying or storing big chunks of data is slow and will most probably result in OOM. 
+- General: When task hints to "count", there's probably a fast way to do it, avoid storing data if not necessary. Copying or storing big chunks of data is slow and will most probably result in OOM
