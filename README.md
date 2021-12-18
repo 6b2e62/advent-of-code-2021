@@ -49,6 +49,23 @@ By day:
   - [day14_p1.py](day14/day14_p1.py) - part 1
   - [day14_p2.py](day14/day14_p2.py) - part 2
   - [day14_linkedlist.py](day14/day14_linkedlist.py) - attempt to use linked lists, it was a bad idea
+- day 15
+  - [day15_bruteforce.py](day15/day15_bruteforce.py)
+  - [day15_optimal.py](day15/day_optimal.py)
+- day 16
+  - [day16_iterative.py](day16/day16_iterative.py) - only part 1, part 2 is hard, brackets have to match perfectly
+  - [day16_recursive.py](day16/day16_recursive.py)
+- day 17
+  - [day17.py](day17/day17.py)
+- day 18
+  - [day18.py](day18/day18.py)
+- day 19
+- day 20
+- day 21
+- day 22
+- day 23
+- day 24
+
 
 ## Lessons learned
 - Python: passes lists by reference, use `copy.copy()` for shallow copy (or `[:]`) or `copy.deepcopy` for deep copy
